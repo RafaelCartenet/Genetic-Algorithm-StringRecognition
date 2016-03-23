@@ -1,0 +1,12 @@
+#ifndef GA_PARAMETERS_H
+#define GA_PARAMETERS_H
+
+
+
+#define MUTERATE 0.05
+
+#define CROSSOVERRATE 0.25
+
+
+
+#endif // GA_PARAMETERS_H

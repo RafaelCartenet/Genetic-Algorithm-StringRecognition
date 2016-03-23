@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1458740840 source:/home/rcartenet/GM4.2/Projetcpp/GAString/main.cpp
+	<iostream>
+	<genome.h>
+
+1458740818 /home/rcartenet/GM4.2/Projetcpp/GAString/include/genome.h
+	<string>
+
+1458740771 source:/home/rcartenet/GM4.2/Projetcpp/GAString/src/genome.cpp
+	"genome.h"
+
