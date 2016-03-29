@@ -25,3 +25,18 @@
 	<string.h>
 	<algorithm>
 
+1459239629 source:/home/maberton/GM4/ProjetCPP/GAString/main.cpp
+	<iostream>
+	<genome.h>
+	<population.h>
+	<GA_parameters.h>
+
+1459239629 /home/maberton/GM4/ProjetCPP/GAString/include/genome.h
+	<string>
+
+1459239629 /home/maberton/GM4/ProjetCPP/GAString/include/population.h
+	<vector>
+	<genome.h>
+
+1459241737 /home/maberton/GM4/ProjetCPP/GAString/include/GA_parameters.h
+

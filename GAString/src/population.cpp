@@ -52,7 +52,13 @@ void population::selection(){
 }
 
 void population::mutation(){
-// A FAIRE
+
+    for (int i=0; i<NBGENOME; i++) {
+        this.getpop().at(i).mutation();
+
+    }
+
+    member.chaine[ipos] = ((member.chaine[ipos] + delta) % 122);
 }
 
 // toString
@@ -60,7 +66,7 @@ string population::toString()
 {
     string chaine;
     for (int i = 0; i < NBGENOME; i++){
-        chaine+=pop.at(i).toString();
+        chaine+=this.getpop().at(i).toString();
     }
     return chaine;
 }
