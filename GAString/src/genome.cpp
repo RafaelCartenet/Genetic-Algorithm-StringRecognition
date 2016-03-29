@@ -1,15 +1,21 @@
 #include "genome.h"
+#include <string.h>
+#include <GA_parameters.h>
 
-// Constructeurs
+// Constructor
 genome::genome()
 {
-    chaine = "allo";
-    fitness = 0;
+    string chainetemp;
+    for (int j=0; j<target.size(); j++){
+        chainetemp += (rand() % 90) + 32;
+    }
+    chaine = chainetemp;
+    fitness = calculfitness();
 }
 
+// Destructor
 genome::~genome()
 {
-    //dtor
 }
 
 // Getters / Setters
@@ -23,8 +29,20 @@ string genome::getchaine()
     return chaine;
 }
 
-// Méthodes
-void genome::calculfitness()
+// Methods
+int genome::calculfitness()
 {
-    fitness = 50;
+    int sum = 0;
+    for (int i = 0; i < target.size(); i++){
+        if (chaine.at(i)!=target.at(i)){
+            sum += 1;
+        }
+    }
+    return sum;
+}
+
+// toString
+string genome::toString()
+{
+    return "chaine : "+chaine+" | fitness : ("+to_string(fitness)+")\n";
 }

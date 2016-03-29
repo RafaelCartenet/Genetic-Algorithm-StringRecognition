@@ -7,7 +7,7 @@ using namespace std;
 class genome
 {
     public:
-        // Constructeurs / Destructeurs
+        // Constructor / Destructor
         genome();
         virtual ~genome();
 
@@ -15,8 +15,11 @@ class genome
         int getfitness();
         string getchaine();
 
-        // Méthodes
-        void calculfitness();
+        // Methods
+        int calculfitness();
+
+        // toString
+        string toString();
     private:
         string chaine;
         int fitness;
