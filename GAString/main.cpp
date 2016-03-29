@@ -19,4 +19,5 @@ void GeneticAlgorithm(){
 int main()
 {
     GeneticAlgorithm();
+    sdqsdqsd;
 }
