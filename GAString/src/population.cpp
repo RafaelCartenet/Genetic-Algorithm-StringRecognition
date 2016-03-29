@@ -40,6 +40,7 @@ bool fitness_sort(genome gen1, genome gen2)
 void population::sort_by_fitness()
 {
     stable_sort(begin(pop),begin(pop), fitness_sort);
+    int a = 5;
 }
 
 void population::crossover(){
