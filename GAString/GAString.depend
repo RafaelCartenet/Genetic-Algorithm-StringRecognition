@@ -40,3 +40,30 @@
 
 1459241737 /home/maberton/GM4/ProjetCPP/GAString/include/GA_parameters.h
 
+1460128771 source:c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\main.cpp
+	<iostream>
+	<genome.h>
+	<population.h>
+	<GA_parameters.h>
+
+1460128868 c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\include\genome.h
+	<string>
+
+1460128542 c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\include\population.h
+	<vector>
+	<genome.h>
+
+1460128436 c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\include\ga_parameters.h
+
+1460128118 source:c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\src\genome.cpp
+	"genome.h"
+	<string.h>
+	<GA_parameters.h>
+
+1460128119 source:c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\src\population.cpp
+	"population.h"
+	<genome.h>
+	<GA_parameters.h>
+	<string.h>
+	<algorithm>
+

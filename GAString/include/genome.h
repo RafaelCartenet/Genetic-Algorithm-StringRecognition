@@ -17,6 +17,8 @@ class genome
 
         // Methods
         int calculfitness();
+        void mutation();
+        void mutation2();
 
         // toString
         string toString();

@@ -1,6 +1,9 @@
 #include "genome.h"
 #include <string.h>
+#include <stdlib.h>
 #include <GA_parameters.h>
+
+using namespace std;
 
 // Constructor
 genome::genome()
@@ -41,14 +44,17 @@ int genome::calculfitness()
     return sum;
 }
 
-void genome::mutation1() { // on fait muter chaque allèle avec une proba MUTERATE
+void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
     //int tsize=target.size();
     //int ipos=rand() %tsize;
 
     int delta = (rand() % 90)+32;
 
-    for (int i=0; i<target.size(); i++)
-        if ( (rand()%100+1)/100<MUTERATE ) this.getchaine()[i] = ((this.getchaine()[i] + delta) % 122);
+    for (int i=0; i<target.size(); i++) {
+        if ( (rand()%100+1)/100<MUTERATE ) {
+            chaine.replace(i,1,(chaine.at(i) + delta) % 122);
+        }
+    }
 }
 
 void genome::mutation2() { // on fait muter chaque allèle avec une proba MUTERATE
@@ -56,13 +62,10 @@ void genome::mutation2() { // on fait muter chaque allèle avec une proba MUTERA
     //int ipos=rand() %tsize;
 
     int delta = (rand() % 90)+32;
-
-    for (int i=0; i<target.size(); i++)
-        if ( (rand()%100+1)/100<MUTERATE ) this.getchaine()[i]++;
 }
 
 // toString
 string genome::toString()
 {
-    return "chaine : "+chaine+" | fitness : ("+to_string(fitness)+")\n";
+    return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")\n";
 }
