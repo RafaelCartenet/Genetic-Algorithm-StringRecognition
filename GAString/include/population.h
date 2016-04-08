@@ -17,6 +17,8 @@ class population
 
         // Methods
         genome getbestgenome();
+        void population_vierge();
+        void add_genome(genome gen);
         bool fitness_sort(genome gen1, genome gen2);
         void sort_by_fitness();
         void crossover();

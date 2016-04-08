@@ -41,14 +41,24 @@ int genome::calculfitness()
     return sum;
 }
 
-void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
+void genome::mutation1() { // on fait muter chaque allèle avec une proba MUTERATE
     //int tsize=target.size();
     //int ipos=rand() %tsize;
 
     int delta = (rand() % 90)+32;
 
-    for (int i=0; i<target.size(); i++) {
+    for (int i=0; i<target.size(); i++)
         if ( (rand()%100+1)/100<MUTERATE ) this.getchaine()[i] = ((this.getchaine()[i] + delta) % 122);
+}
+
+void genome::mutation2() { // on fait muter chaque allèle avec une proba MUTERATE
+    //int tsize=target.size();
+    //int ipos=rand() %tsize;
+
+    int delta = (rand() % 90)+32;
+
+    for (int i=0; i<target.size(); i++)
+        if ( (rand()%100+1)/100<MUTERATE ) this.getchaine()[i]++;
 }
 
 // toString
