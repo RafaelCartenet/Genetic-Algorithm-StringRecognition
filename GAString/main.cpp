@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <genome.h>
 #include <population.h>
 #include <GA_parameters.h>
@@ -10,7 +12,7 @@ void GeneticAlgorithm(){
     for (int i = 0; i < NBGENE; i++){
         pop.selection();
         pop.crossover();
-        pop.mutation();
+        // pop.mutation();
         cout << pop.toString() << endl;
     }
 }
@@ -18,5 +20,18 @@ void GeneticAlgorithm(){
 
 int main()
 {
-    GeneticAlgorithm();
+    srand(std::time(0));
+
+    population unepop = population();
+
+    genome genA = genome("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    genome genB = genome("bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+    unepop.add_genome(genA);
+    unepop.add_genome(genB);
+
+
+    for (int i = 0; i < 20; i++){
+        unepop.mutation();
+        cout << unepop.toString() << endl;
+    }
 }

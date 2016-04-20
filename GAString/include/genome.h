@@ -9,6 +9,7 @@ class genome
     public:
         // Constructor / Destructor
         genome();
+        genome(string chaine_init);
         virtual ~genome();
 
         // Getters / Setters
@@ -18,12 +19,13 @@ class genome
         // Methods
         int calculfitness();
         void mutation();
-        void mutation2();
 
         // toString
         string toString();
-    private:
+
         string chaine;
+    private:
+
         int fitness;
 };
 

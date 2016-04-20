@@ -6,13 +6,17 @@
 using namespace std;
 
 // Constructor
-genome::genome()
-{
+genome::genome(){
     string chainetemp;
     for (int j=0; j<target.size(); j++){
         chainetemp += (rand() % 90) + 32;
     }
     chaine = chainetemp;
+    fitness = calculfitness();
+}
+
+genome::genome(string chaine_init){
+    chaine = chaine_init;
     fitness = calculfitness();
 }
 
@@ -45,23 +49,14 @@ int genome::calculfitness()
 }
 
 void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
-    //int tsize=target.size();
-    //int ipos=rand() %tsize;
-
-    int delta = (rand() % 90)+32;
+    //int delta = (rand() % 90)+32;
 
     for (int i=0; i<target.size(); i++) {
-        if ( (rand()%100+1)/100<MUTERATE ) {
-            chaine.replace(i,1,(chaine.at(i) + delta) % 122);
+        if (RANDOM<MUTERATE) {
+            // (chaine.at(i) + delta) % 122
+            chaine.replace(i,1, ".");
         }
     }
-}
-
-void genome::mutation2() { // on fait muter chaque allèle avec une proba MUTERATE
-    //int tsize=target.size();
-    //int ipos=rand() %tsize;
-
-    int delta = (rand() % 90)+32;
 }
 
 // toString

@@ -4,7 +4,7 @@ Première fois :
 3) relier le dossier existant au dossier github en ligne :
 
 git init
-git remode add origin https://github.com/Rafafouille76/GAstringcpp
+git remote add origin https://github.com/Rafafouille76/GAstringcpp
 
 
 RECUPERER :
