@@ -14,6 +14,7 @@ class population
 
         // Getters / Setters
         vector<genome> getpop();
+        void setpop(vector<genome>);
 
         // Methods
         genome getbestgenome();

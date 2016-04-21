@@ -30,7 +30,10 @@ int main()
     unepop.add_genome(genB);
 
 
+
+
     for (int i = 0; i < 20; i++){
+        unepop.crossover();
         unepop.mutation();
         cout << unepop.toString() << endl;
     }

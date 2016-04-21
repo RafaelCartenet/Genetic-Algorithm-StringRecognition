@@ -15,6 +15,7 @@ class genome
         // Getters / Setters
         int getfitness();
         string getchaine();
+        void setchaine(string newchaine);
 
         // Methods
         int calculfitness();
@@ -23,9 +24,9 @@ class genome
         // toString
         string toString();
 
-        string chaine;
-    private:
 
+    private:
+        string chaine;
         int fitness;
 };
 
