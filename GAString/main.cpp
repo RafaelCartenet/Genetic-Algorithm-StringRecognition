@@ -24,17 +24,18 @@ int main()
 
     population unepop = population();
 
-    genome genA = genome("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    genome genB = genome("bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-    unepop.add_genome(genA);
-    unepop.add_genome(genB);
+    //genome genA = genome("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    //genome genB = genome("bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+    //unepop.add_genome(genA);
+    //unepop.add_genome(genB);
+
+    unepop.initialiser_population();
 
 
-
-
-    for (int i = 0; i < 20; i++){
+    for (int i = 0; i < 50; i++){
         unepop.crossover();
         unepop.mutation();
+        unepop.selection();
         cout << unepop.toString() << endl;
     }
 }

@@ -1,4 +1,5 @@
 #include "genome.h"
+#include <iostream>
 #include <string.h>
 #include <stdlib.h>
 #include <GA_parameters.h>
@@ -50,13 +51,12 @@ int genome::calculfitness() {
 }
 
 void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
-    //int delta = (rand() % 90)+32;
+    int delta = (rand() % 91)+32;
     string tempchaine = this->chaine;
 
     for (int i=0; i<target.size(); i++) {
         if (RANDOM<MUTERATE) {
-            // (chaine.at(i) + delta) % 122
-            tempchaine.replace(i,1, ".");
+            tempchaine.at(i) = delta;
         }
     }
 

@@ -3,10 +3,11 @@
 
 
 #define target string("Je m'appelle Killian Jaubert")
-#define MUTERATE 0.05
+#define SIZE target.size()
+#define MUTERATE 0.25
 #define CROSSOVERRATE 0.25
-#define NBGENOME 2
-#define NBGENE 5
+#define NBGENOME 60
+#define NBGENE 50
 #define RANDOM (float)(rand()%100+1)/100
 
 

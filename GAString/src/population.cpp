@@ -32,7 +32,7 @@ void population::initialiser_population() {
     for (int i = 0; i < NBGENOME; i++){
         poptemp.push_back(genome());
     }
-    this->getpop() = poptemp;
+    this->setpop(poptemp);
 }
 
 
@@ -90,16 +90,20 @@ void population::selection(){
     int count;
     int k;
 
-    for (int i = 0; i < this->getpop().size(); i++){
-        sum_fitness += this->getpop().at(i).getfitness();
+    for (int i = 0; i < NBGENOME; i++){
+        sum_fitness += SIZE -this->getpop().at(i).getfitness();
     }
 
     for (int i = 0; i < NBGENOME; i++) {
-        bound = rand()%sum_fitness+1;
+        bound = (rand()%sum_fitness)+1;
         fitnesscount = 0;
         k = 0;
-        while (fitnesscount < bound) {fitnesscount += this->getpop().at(k++).getfitness();}
-        newpop.add_genome(this->getpop().at(k));
+        while ((fitnesscount < bound)&&(k<NBGENOME)) {
+            //cout << k << " " << bound << " " << fitnesscount << " " << sum_fitness << endl;
+            fitnesscount += SIZE - this->getpop().at(k).getfitness();
+            k++;
+        }
+        newpop.add_genome(this->getpop().at(--k));
     }
 
     this->setpop(newpop.getpop());
