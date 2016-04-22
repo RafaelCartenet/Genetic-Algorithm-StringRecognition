@@ -40,25 +40,31 @@ void population::add_genome(genome Jauby) {
     pop.push_back(Jauby);
 }
 
-genome population::getbestgenome(){
-    unsigned int fitness;
-    for (int i=0; i< NBGENOME ; i++) {
-        fitness=0;
-        for (int j=0; j<target.size(); j++) {
-            fitness += abs(int(pop.at(i).getchaine()[j]-target[j]));
+void population::del_genome(int i) {
+    pop.erase (pop.begin()+i-1);
+}
+
+genome population::getbestgenome() const{
+    int indice=0;
+    for (int i=1; i< NBGENOME ; i++) {
+        if (pop.at(indice).getfitness()<pop.at(i).getfitness()){
+            indice = i;
         }
+    }
+    return pop.at(indice);
+}
+
+void population::updatefitness(){
+    for (int i = 0; i < NBGENOME; i++){
+        pop.at(i).updatefitness();
     }
 }
 
-bool fitness_sort(genome gen1, genome gen2)
-{
-    return (gen1.getfitness() < gen2.getfitness());
+void population::sort_by_fitness(){
+    sort(pop.begin(), pop.end(),[](const genome& a,const genome &b){
+            return a.getfitness() > b.getfitness();
+         });
 }
-
-//void population::sort_by_fitness()
-//{
-//    stable_sort(begin(pop),end(pop), fitness_sort);
-//}
 
 void population::crossover(){
     population newpop = population();
@@ -83,24 +89,36 @@ void population::crossover(){
 }
 
 void population::selection(){
+    this->updatefitness();
+
+    this->sort_by_fitness();
+
+    int Elitnb = ELITRATE*NBGENOME;
+
     population newpop = population();
+
+    /* Elitisme */
+    for (int i = 0; i < Elitnb; i++){
+        newpop.add_genome(this->getpop().at(i));
+    }
+
+    /* RWS */
     int sum_fitness = 0;
     int fitnesscount;
     int bound;
-    int count;
     int k;
 
     for (int i = 0; i < NBGENOME; i++){
-        sum_fitness += SIZE -this->getpop().at(i).getfitness();
+        sum_fitness += this->getpop().at(i).getfitness();
     }
 
-    for (int i = 0; i < NBGENOME; i++) {
+    for (int i = Elitnb; i < NBGENOME; i++) {
         bound = (rand()%sum_fitness)+1;
         fitnesscount = 0;
         k = 0;
         while ((fitnesscount < bound)&&(k<NBGENOME)) {
             //cout << k << " " << bound << " " << fitnesscount << " " << sum_fitness << endl;
-            fitnesscount += SIZE - this->getpop().at(k).getfitness();
+            fitnesscount += this->getpop().at(k).getfitness();
             k++;
         }
         newpop.add_genome(this->getpop().at(--k));
@@ -122,8 +140,9 @@ void population::mutation(){
 // toString
 string population::toString()
 {
+    unsigned int i;
     string chaine;
-    for (int i = 0; i < this->getpop().size(); i++){
+    for (i = 0; i < this->getpop().size(); i++){
         chaine+=this->getpop().at(i).toString();
     }
 

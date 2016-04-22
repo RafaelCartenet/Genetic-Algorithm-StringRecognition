@@ -21,21 +21,16 @@ void GeneticAlgorithm(){
 int main()
 {
     srand(std::time(0));
-
+    int i;
     population unepop = population();
-
-    //genome genA = genome("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    //genome genB = genome("bbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-    //unepop.add_genome(genA);
-    //unepop.add_genome(genB);
-
     unepop.initialiser_population();
 
-
-    for (int i = 0; i < 50; i++){
-        unepop.crossover();
+    for (i = 0; i < NBGENE; i++){
         unepop.mutation();
+        unepop.crossover();
         unepop.selection();
-        cout << unepop.toString() << endl;
+        cout << unepop.getbestgenome().toString();
+        if (unepop.getbestgenome().getfitness() == SIZE){break;}
     }
+    cout << i << endl;
 }

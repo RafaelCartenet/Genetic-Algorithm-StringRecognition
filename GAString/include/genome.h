@@ -13,12 +13,13 @@ class genome
         virtual ~genome();
 
         // Getters / Setters
-        int getfitness();
+        int getfitness()const ;
         string getchaine();
         void setchaine(string newchaine);
 
         // Methods
         int calculfitness();
+        void updatefitness();
         void mutation();
 
         // toString

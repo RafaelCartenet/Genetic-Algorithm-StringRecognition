@@ -27,7 +27,7 @@ genome::~genome()
 }
 
 // Getters / Setters
-int genome::getfitness(){
+int genome::getfitness() const{
     return fitness;
 }
 
@@ -40,27 +40,31 @@ void genome::setchaine(string newchaine){
 }
 
 // Methods
+void genome::updatefitness(){
+    fitness = calculfitness();
+}
+
 int genome::calculfitness() {
     int sum = 0;
-    //for (int i = 0; i < target.size(); i++){
-    //    if (chaine.at(i)!=target.at(i)){
-    //        sum += 1;
-    //    }
-
     for (int i = 0; i < target.size(); i++){
-        sum += abs(this->getchaine().at(i)-target.at(i));
+        if (chaine.at(i)!=target.at(i)){
+            sum += 1;
+        }
     }
 
-    return 122*SIZE - sum;
+    //for (int i = 0; i < target.size(); i++){
+    //    sum += abs(this->getchaine().at(i)-target.at(i));
+    //}
+
+    return SIZE - sum;
 }
 
 void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
-    int delta = (rand() % 91)+32;
     string tempchaine = this->chaine;
 
     for (int i=0; i<target.size(); i++) {
         if (RANDOM<MUTERATE) {
-            tempchaine.at(i) = delta;
+            tempchaine.at(i) = (rand() % 91)+32;
         }
     }
 
