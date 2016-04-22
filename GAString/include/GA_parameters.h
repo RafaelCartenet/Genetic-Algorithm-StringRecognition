@@ -2,12 +2,12 @@
 #define GA_PARAMETERS_H
 
 
-#define target string("Je m'appelle Killian Jaubert")
+#define target string("aaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 #define SIZE target.size()
-#define MUTERATE 0.25
+#define MUTERATE 0.05
 #define CROSSOVERRATE 0.25
-#define NBGENOME 60
-#define NBGENE 50
+#define NBGENOME 100
+#define NBGENE 50000
 #define RANDOM (float)(rand()%100+1)/100
 
 

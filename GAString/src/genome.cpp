@@ -42,12 +42,16 @@ void genome::setchaine(string newchaine){
 // Methods
 int genome::calculfitness() {
     int sum = 0;
+    //for (int i = 0; i < target.size(); i++){
+    //    if (chaine.at(i)!=target.at(i)){
+    //        sum += 1;
+    //    }
+
     for (int i = 0; i < target.size(); i++){
-        if (chaine.at(i)!=target.at(i)){
-            sum += 1;
-        }
+        sum += abs(this->getchaine().at(i)-target.at(i));
     }
-    return sum;
+
+    return 122*SIZE - sum;
 }
 
 void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
