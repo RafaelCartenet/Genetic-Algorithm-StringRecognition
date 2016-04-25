@@ -27,23 +27,49 @@ void population::setpop(vector<genome> newpop){
 }
 
 // Méthodes
+
+/** \brief Méthode de création d'une population vide
+
+ *
+ * \return void
+ *
+ */
 void population::initialiser_population() {
     vector<genome> poptemp;
-    for (int i = 0; i < NBGENOME; i++){
+    for (int i = 0; i < NBGENOME; i++)
         poptemp.push_back(genome());
-    }
     this->setpop(poptemp);
 }
 
 
-void population::add_genome(genome Jauby) {
-    pop.push_back(Jauby);
+/** \brief Méthode d'ajout d'un génome dans une population
+ *
+ * \param gen genome le génome ajouté en fin de population
+ * \return void
+ *
+ */
+void population::add_genome(genome gen) {
+    pop.push_back(gen);
 }
 
+
+
+/** \brief Méthode de suppression d'un génome dans une population
+ *
+ * \param i int l'indice dans la population où le génome est supprimé
+ * \return void
+ *
+ */
 void population::del_genome(int i) {
     pop.erase (pop.begin()+i-1);
 }
 
+
+/** \brief Méthode qui renvoie le génome avec la meilleure fitness
+ *
+ * \return genome le génome avec la fitness la plus élevée dans la population
+ *
+ */
 genome population::getbestgenome() const{
     int indice=0;
     for (int i=1; i< NBGENOME ; i++) {
@@ -54,18 +80,38 @@ genome population::getbestgenome() const{
     return pop.at(indice);
 }
 
+
+/** \brief Méthode de mise à jour de la fitness pour toute une population
+ * \details Cette méthode appelle la méthode updatefitness définie dans la classe genome à tous les génomes de la population
+ * \return void
+ *
+ */
 void population::updatefitness(){
-    for (int i = 0; i < NBGENOME; i++){
+    for (int i = 0; i < NBGENOME; i++)
         pop.at(i).updatefitness();
-    }
 }
 
+
+/** \brief Méthode de tri d'une population
+ * \details Le but de cette méthode est de trier les différents génome d'une population selon une certaine règle.
+ * La règle ici définie est de positionner les génomes avec la meilleure fitness au début de la population.
+ * \return void
+ *
+ */
 void population::sort_by_fitness(){
     sort(pop.begin(), pop.end(),[](const genome& a,const genome &b){
             return a.getfitness() > b.getfitness();
          });
 }
 
+
+/** \brief Méthode principale du crossover
+ * \details Cette méthode va parcourir la population et sélectionner 2 génomes dans l'ordre de la population.
+ * On génère un entier entre 0 et 1, si celui-ci est inférieur à CROSSOVERRATE, alors on fait un crossover sur ces 2 génomes.
+ * Cela consiste à prendre une portion (définie aléatoirement) de caractères dans le premier génome, et le reste dans le second.
+ * \return void
+ *
+ */
 void population::crossover(){
     population newpop = population();
     string chaine1, chaine2;
@@ -74,9 +120,9 @@ void population::crossover(){
         fils1=pop.at(k);
         fils2=pop.at(k+1);
         if (RANDOM<CROSSOVERRATE) {
-            int pas=(rand()%(target.size()-2)+1); //random entre 1 et target.size-2
-            chaine1 = fils1.getchaine().substr(0,pas) + fils2.getchaine().substr(pas,target.size()-pas);
-            chaine2 = fils2.getchaine().substr(0,pas) + fils1.getchaine().substr(pas,target.size()-pas);
+            int pas=(rand()%(SIZE-2)+1);
+            chaine1 = fils1.getchaine().substr(0,pas) + fils2.getchaine().substr(pas,SIZE-pas);
+            chaine2 = fils2.getchaine().substr(0,pas) + fils1.getchaine().substr(pas,SIZE-pas);
             fils1.setchaine(chaine1);
             fils2.setchaine(chaine2);
         }
@@ -88,6 +134,12 @@ void population::crossover(){
     this->setpop(newpop.getpop());
 }
 
+
+/** \brief
+ *
+ * \return void
+ *
+ */
 void population::selection(){
     this->updatefitness();
 
@@ -127,6 +179,12 @@ void population::selection(){
     this->setpop(newpop.getpop());
 }
 
+
+/** \brief
+ *
+ * \return void
+ *
+ */
 void population::mutation(){
     vector<genome> newpop = this->getpop();
 
@@ -138,6 +196,12 @@ void population::mutation(){
 }
 
 
+/** \brief
+ *
+ * \param k int
+ * \return void
+ *
+ */
 void population::mutation(int k){
     vector<genome> newpop = this->getpop();
 
@@ -147,6 +211,7 @@ void population::mutation(int k){
 
     this->setpop(newpop);
 }
+
 
 // toString
 string population::toString()

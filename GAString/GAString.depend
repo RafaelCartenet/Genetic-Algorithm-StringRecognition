@@ -32,20 +32,23 @@
 	<string.h>
 	<algorithm>
 
-1459239629 source:/home/maberton/GM4/ProjetCPP/GAString/main.cpp
+1461585547 source:/home/maberton/GM4/ProjetCPP/GAString/main.cpp
 	<iostream>
+	<cstdlib>
+	<ctime>
 	<genome.h>
 	<population.h>
 	<GA_parameters.h>
+	<fstream>
 
-1459239629 /home/maberton/GM4/ProjetCPP/GAString/include/genome.h
+1461575547 /home/maberton/GM4/ProjetCPP/GAString/include/genome.h
 	<string>
 
-1459239629 /home/maberton/GM4/ProjetCPP/GAString/include/population.h
+1461575547 /home/maberton/GM4/ProjetCPP/GAString/include/population.h
 	<vector>
 	<genome.h>
 
-1459241737 /home/maberton/GM4/ProjetCPP/GAString/include/GA_parameters.h
+1461585914 /home/maberton/GM4/ProjetCPP/GAString/include/GA_parameters.h
 
 1460128771 source:c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\main.cpp
 	<iostream>
@@ -69,6 +72,21 @@
 
 1460128119 source:c:\users\rafael\documents\cours\gm4.2\projet c++\code\gastring\src\population.cpp
 	"population.h"
+	<genome.h>
+	<GA_parameters.h>
+	<string.h>
+	<algorithm>
+
+1461584195 source:/home/maberton/GM4/ProjetCPP/GAString/src/genome.cpp
+	"genome.h"
+	<iostream>
+	<string.h>
+	<stdlib.h>
+	<GA_parameters.h>
+
+1461584099 source:/home/maberton/GM4/ProjetCPP/GAString/src/population.cpp
+	"population.h"
+	<iostream>
 	<genome.h>
 	<GA_parameters.h>
 	<string.h>

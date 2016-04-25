@@ -9,7 +9,7 @@ using namespace std;
 // Constructor
 genome::genome(){
     string chainetemp;
-    for (int j=0; j<target.size(); j++){
+    for (int j=0; j<SIZE; j++){
         chainetemp += (rand() % 90) + 32;
     }
     chaine = chainetemp;
@@ -40,41 +40,63 @@ void genome::setchaine(string newchaine){
 }
 
 // Methods
+
+/** \brief Méthode qui va recalculer la fitness de chaque génome
+ *
+ * \return void
+ *
+ */
 void genome::updatefitness(){
     fitness = calculfitness();
 }
 
+
+/** \brief Une première méthode de calculer la fitness d'un génome
+ * \details Celle-ci est égale au nombre de caractères que le génome a en commun avec la chaîne cible.
+ * \return int
+ *
+ */
 int genome::calculfitness() {
     int sum = 0;
-    for (int i = 0; i < target.size(); i++){
+    for (int i = 0; i < SIZE; i++){
         if (chaine.at(i)!=target.at(i)){
             sum += 1;
         }
     }
 
-    //for (int i = 0; i < target.size(); i++){
-    //    sum += abs(this->getchaine().at(i)-target.at(i));
-    //}
+    /* Une deuxième méthode éventuelle, mais qui marche beaucoup moins bien
+    for (int i = 0; i < SIZE; i++){
+        sum += abs(this->getchaine().at(i)-target.at(i));
+    }
+    */
 
     return SIZE - sum;
 }
 
-void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERATE
+/* Cette méthode va remplacer certains caractères dans le génome :
+On parcourt la chaîne du génome actuel de caractère en caractère et à chaque pas on génère un nombre entre 0 et 1.
+Si celui-ci est inférieur au paramètre MUTERATE, on remplace le caractère correspondant par un aléatoire de la table ASCII
+compris entre 32 et 122 (32 afin d'éviter les premiers caractères qui ne correspondent à aucune lettre de l'alphabet.
+*/
+void genome::mutation() {
     string tempchaine = this->chaine;
 
-    for (int i=0; i<target.size(); i++) {
-        if (RANDOM<MUTERATE) {
+    for (int i=0; i<SIZE; i++) {
+        if (RANDOM<MUTERATE)
             tempchaine.at(i) = (rand() % 91)+32;
-        }
     }
 
     this->setchaine(tempchaine);
 }
 
+
+/* Dans cette méthode, on passe un entier i en paramètre, qui sera la génération courante dans le main,
+afin d'augmenter linéairement le MUTERATE au fil des générations.
+*/
 void genome::mutation(int i) {
 	string tempchaine = this->chaine;
 
-	for (int j=0; j<target.size(); j++) {
+	for (int j=0; j<SIZE; j++) {
 		if (RANDOM<(MUTERATE*(i+1)/50)) {
             tempchaine.at(j) = (rand() % 91)+32;
         }
@@ -84,3 +106,4 @@ void genome::mutation(int i) {
 string genome::toString() {
     return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")\n";
 }
+
