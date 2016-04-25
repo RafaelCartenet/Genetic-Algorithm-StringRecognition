@@ -21,7 +21,6 @@ class genome
         int calculfitness();
         void updatefitness();
         void mutation();
-        void mutation(int i);
 
         // toString
         string toString();

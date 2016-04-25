@@ -29,8 +29,7 @@ void population::setpop(vector<genome> newpop){
 // Méthodes
 
 /** \brief Méthode de création d'une population vide
-
- *
+ * \details On ajoute NBGENOME vides dans une population
  * \return void
  *
  */
@@ -135,7 +134,7 @@ void population::crossover(){
 }
 
 
-/** \brief
+/** \brief la flemme de le faire la famille
  *
  * \return void
  *
@@ -180,8 +179,8 @@ void population::selection(){
 }
 
 
-/** \brief
- *
+/** \brief Méthode de mutation pour une population
+ * \details On applique la méthode mutation de la classe genome dans toute la population
  * \return void
  *
  */
@@ -190,23 +189,6 @@ void population::mutation(){
 
     for (int i=0; i<NBGENOME; i++) {
         newpop.at(i).mutation();
-    }
-
-    this->setpop(newpop);
-}
-
-
-/** \brief
- *
- * \param k int
- * \return void
- *
- */
-void population::mutation(int k){
-    vector<genome> newpop = this->getpop();
-
-    for (int i=0; i<NBGENOME; i++) {
-        newpop.at(i).mutation(k);
     }
 
     this->setpop(newpop);

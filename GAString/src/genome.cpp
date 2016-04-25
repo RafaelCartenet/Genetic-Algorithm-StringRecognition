@@ -73,11 +73,14 @@ int genome::calculfitness() {
     return SIZE - sum;
 }
 
-/* Cette méthode va remplacer certains caractères dans le génome :
-On parcourt la chaîne du génome actuel de caractère en caractère et à chaque pas on génère un nombre entre 0 et 1.
-Si celui-ci est inférieur au paramètre MUTERATE, on remplace le caractère correspondant par un aléatoire de la table ASCII
-compris entre 32 et 122 (32 afin d'éviter les premiers caractères qui ne correspondent à aucune lettre de l'alphabet.
-*/
+
+/** \brief Méthode qui va remplacer certains caractères du génome
+ * \details On parcourt la chaîne du génome actuel de caractère en caractère et à chaque pas on génère un nombre entre 0 et 1.
+ * Si celui-ci est inférieur au paramètre MUTERATE, on remplace le caractère correspondant par un autre aléatoire de la table ASCII
+ * compris entre 32 et 122 (32 afin d'éviter les premiers caractères qui ne correspondent à aucune lettre de l'alphabet, 122 pour la dernière lettre relevante de la table ASCII).
+ * \return void
+ *
+ */
 void genome::mutation() {
     string tempchaine = this->chaine;
 
@@ -90,18 +93,6 @@ void genome::mutation() {
 }
 
 
-/* Dans cette méthode, on passe un entier i en paramètre, qui sera la génération courante dans le main,
-afin d'augmenter linéairement le MUTERATE au fil des générations.
-*/
-void genome::mutation(int i) {
-	string tempchaine = this->chaine;
-
-	for (int j=0; j<SIZE; j++) {
-		if (RANDOM<(MUTERATE*(i+1)/50)) {
-            tempchaine.at(j) = (rand() % 91)+32;
-        }
-    }
-}
 // toString
 string genome::toString() {
     return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")\n";

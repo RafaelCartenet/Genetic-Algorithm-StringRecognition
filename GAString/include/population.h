@@ -28,7 +28,6 @@ class population
         void crossover();
         void selection();
         void mutation();
-        void mutation(int k);
 
 
         // toString
