@@ -71,6 +71,15 @@ void genome::mutation() { // on fait muter chaque allèle avec une proba MUTERAT
     this->setchaine(tempchaine);
 }
 
+void genome::mutation(int i) {
+	string tempchaine = this->chaine;
+
+	for (int j=0; j<target.size(); j++) {
+		if (RANDOM<(MUTERATE*(i+1)/50)) {
+            tempchaine.at(j) = (rand() % 91)+32;
+        }
+    }
+}
 // toString
 string genome::toString() {
     return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")\n";

@@ -1,29 +1,30 @@
 # depslib dependency file v1.0
-1461329799 source:/home/rcartenet/GM4.2/Projetcpp/GAString/main.cpp
+1461573744 source:/home/rcartenet/GM4.2/Projetcpp/GAString/main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<genome.h>
 	<population.h>
 	<GA_parameters.h>
+	<fstream>
 
-1461326799 /home/rcartenet/GM4.2/Projetcpp/GAString/include/genome.h
+1461573372 /home/rcartenet/GM4.2/Projetcpp/GAString/include/genome.h
 	<string>
 
-1461326813 source:/home/rcartenet/GM4.2/Projetcpp/GAString/src/genome.cpp
+1461573739 source:/home/rcartenet/GM4.2/Projetcpp/GAString/src/genome.cpp
 	"genome.h"
 	<iostream>
 	<string.h>
 	<stdlib.h>
 	<GA_parameters.h>
 
-1461331034 /home/rcartenet/GM4.2/Projetcpp/GAString/include/GA_parameters.h
+1461574090 /home/rcartenet/GM4.2/Projetcpp/GAString/include/GA_parameters.h
 
-1461326783 /home/rcartenet/GM4.2/Projetcpp/GAString/include/population.h
+1461573429 /home/rcartenet/GM4.2/Projetcpp/GAString/include/population.h
 	<vector>
 	<genome.h>
 
-1461327968 source:/home/rcartenet/GM4.2/Projetcpp/GAString/src/population.cpp
+1461573718 source:/home/rcartenet/GM4.2/Projetcpp/GAString/src/population.cpp
 	"population.h"
 	<iostream>
 	<genome.h>

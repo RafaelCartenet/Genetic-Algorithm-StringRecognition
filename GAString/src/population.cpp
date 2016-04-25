@@ -137,6 +137,17 @@ void population::mutation(){
     this->setpop(newpop);
 }
 
+
+void population::mutation(int k){
+    vector<genome> newpop = this->getpop();
+
+    for (int i=0; i<NBGENOME; i++) {
+        newpop.at(i).mutation(k);
+    }
+
+    this->setpop(newpop);
+}
+
 // toString
 string population::toString()
 {
