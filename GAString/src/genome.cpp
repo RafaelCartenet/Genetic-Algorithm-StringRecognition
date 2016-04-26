@@ -95,6 +95,6 @@ void genome::mutation() {
 
 // toString
 string genome::toString() {
-    return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")\n";
+    return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")";
 }
 

@@ -134,8 +134,12 @@ void population::crossover(){
 }
 
 
-/** \brief la flemme de le faire la famille
- *
+/** \brief Méthode de la selection des génomes
+ * \details On met d'abord à jour la fitness de la population, pour la trier ensuite pour mettre les génomes avec la meilleure fitness au début et la pire au fond de la population
+ * On conserve alors un certain pourcentage (défini en paramètres par ELITRATE) de génomes intacts - principe d'élitisme.
+ * La méthode de selection qu'on utilise alors ensuite est celle de la roulette : on additionne les fitness de toute la population, ce qui va créer un intervalle [0;F]
+ * On va alors choisir un nombre aléatoire dans cet intervalle [0;F], et prendre le génome dont la fitness se situe à cet endroit dans l'intervalle.
+ * Ainsi, les génomes avec une grande fitness ont plus de chances d'être selectionnés, tout en gardant un processus de selection aléatoire.
  * \return void
  *
  */
@@ -168,7 +172,6 @@ void population::selection(){
         fitnesscount = 0;
         k = 0;
         while ((fitnesscount < bound)&&(k<NBGENOME)) {
-            //cout << k << " " << bound << " " << fitnesscount << " " << sum_fitness << endl;
             fitnesscount += this->getpop().at(k).getfitness();
             k++;
         }
