@@ -2,7 +2,7 @@
 #define GA_PARAMETERS_H
 
 
-#define target string("Hello World ! Welcome to my world !")
+#define target string("Hello world !")
 
 #define SIZE target.size()
 #define RANDOM (float)(rand()%100+1)/100

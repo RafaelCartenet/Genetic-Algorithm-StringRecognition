@@ -46,7 +46,7 @@ int main()
         if (unepop.getbestgenome().getfitness() >= best_global_genome.getfitness())
             best_global_genome = unepop.getbestgenome();
 
-        cout << i << " : " << best_global_genome.toString() << " muterate : " << MUTERATE << endl;
+        cout << i << " : " << best_global_genome.toString() << " mute " << MUTERATE << endl;
         if (best_global_genome.getfitness() == SIZE) break;
         myfile << i << " " << best_global_genome.getfitness() << " " << MUTERATE << endl;
     }

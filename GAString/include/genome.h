@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 class genome
 {
     public:

@@ -63,7 +63,6 @@ int genome::calculfitness() {
             sum += 1;
         }
     }
-
     /* Une deuxième méthode éventuelle, mais qui marche beaucoup moins bien
     for (int i = 0; i < SIZE; i++){
         sum += abs(this->getchaine().at(i)-target.at(i));
