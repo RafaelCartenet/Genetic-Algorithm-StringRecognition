@@ -11,14 +11,11 @@ population::population(){
 }
 
 // Destructor
-population::~population()
-{
-    //dtor
+population::~population(){
 }
 
 // Getters / Setters
-vector<genome> population::getpop()
-{
+vector<genome> population::getpop() const{
     return this->pop;
 }
 
@@ -27,7 +24,6 @@ void population::setpop(vector<genome> newpop){
 }
 
 // Méthodes
-
 /** \brief Méthode de création d'une population vide
  * \details On ajoute NBGENOME vides dans une population
  * \return void
@@ -38,6 +34,13 @@ void population::initialiser_population() {
     for (int i = 0; i < NBGENOME; i++)
         poptemp.push_back(genome());
     this->setpop(poptemp);
+}
+
+
+void population::update_muterate() const{
+    int delta = pop.at(0).getfitness() - pop.at(NBGENOME/2).getfitness();
+    if (delta < DELTAFITNESS && MUTERATE < MUTERATEMAX)
+        MUTERATE*=COEFFMUTERATE;
 }
 
 
@@ -65,9 +68,7 @@ void population::del_genome(int i) {
 
 
 /** \brief Méthode qui renvoie le génome avec la meilleure fitness
- *
  * \return genome le génome avec la fitness la plus élevée dans la population
- *
  */
 genome population::getbestgenome() const{
     int indice=0;
@@ -85,7 +86,7 @@ genome population::getbestgenome() const{
  * \return void
  *
  */
-void population::updatefitness(){
+void population::update_fitness(){
     for (int i = 0; i < NBGENOME; i++)
         pop.at(i).updatefitness();
 }
@@ -144,7 +145,7 @@ void population::crossover(){
  *
  */
 void population::selection(){
-    this->updatefitness();
+    this->update_fitness();
 
     this->sort_by_fitness();
 
@@ -167,6 +168,8 @@ void population::selection(){
         sum_fitness += this->getpop().at(i).getfitness();
     }
 
+    sum_fitness = (sum_fitness==0 ? 1 : sum_fitness);
+
     for (int i = Elitnb; i < NBGENOME; i++) {
         bound = (rand()%sum_fitness)+1;
         fitnesscount = 0;
@@ -185,7 +188,6 @@ void population::selection(){
 /** \brief Méthode de mutation pour une population
  * \details On applique la méthode mutation de la classe genome dans toute la population
  * \return void
- *
  */
 void population::mutation(){
     vector<genome> newpop = this->getpop();
@@ -199,8 +201,7 @@ void population::mutation(){
 
 
 // toString
-string population::toString()
-{
+string population::toString() const{
     unsigned int i;
     string chaine;
     for (i = 0; i < this->getpop().size(); i++){

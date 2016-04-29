@@ -13,13 +13,14 @@ class population
         virtual ~population();
 
         // Getters / Setters
-        vector<genome> getpop();
+        vector<genome> getpop() const;
         void setpop(vector<genome>);
 
         // Methods
         genome getbestgenome() const;
+        void update_muterate() const;
         void initialiser_population();
-        void updatefitness();
+        void update_fitness();
         void population_vierge();
         void add_genome(genome gen);
         void del_genome(int i);
@@ -31,7 +32,7 @@ class population
 
 
         // toString
-        string toString();
+        string toString() const;
     private:
         vector<genome> pop;
 };

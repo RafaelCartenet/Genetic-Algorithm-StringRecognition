@@ -9,50 +9,33 @@
 using namespace std;
 
 void GeneticAlgorithm(){
-    population pop = population();
-    for (int i = 0; i < NBGENE; i++){
-        pop.selection();
-        pop.crossover();
-        // pop.mutation();
-        cout << pop.toString() << endl;
+    ofstream myfile;
+    myfile.open ("results.txt");
+    int i;
+    population unepop = population();
+    unepop.initialiser_population();
+    genome best_global_genome = unepop.getbestgenome();
+    for (i = 0; i < NBGENE; i++){
+        unepop.mutation();
+        unepop.crossover();
+        unepop.selection();
+        unepop.update_muterate();
+        if (unepop.getbestgenome().getfitness() >= best_global_genome.getfitness())
+            best_global_genome = unepop.getbestgenome();
+        cout << i << " : " << best_global_genome.toString() << " mute " << MUTERATE << endl;
+        myfile << i << " " << best_global_genome.getfitness() << " " << MUTERATE << endl;
+        if (best_global_genome.getfitness() == SIZE) break;
     }
+    cout << "Génération actuelle : " << i << endl;
+
+    myfile.close();
 }
 
 
 int main()
 {
-    ofstream myfile;
-    myfile.open ("results.txt");
-
     srand(std::time(0));
-    int i;
-    population unepop = population();
-    unepop.initialiser_population();
-
-    genome best_global_genome = unepop.getbestgenome();
-
-
-    for (i = 0; i < NBGENE; i++){
-        unepop.mutation();
-        unepop.crossover();
-        unepop.selection();
-
-        int delta = unepop.getpop().at(0).getfitness() - unepop.getpop().at(NBGENOME/2).getfitness();
-
-        if (delta < DELTAFITNESS && MUTERATE<MUTERATEMAX)
-            MUTERATE*=COEFFMUTERATE;
-
-
-        if (unepop.getbestgenome().getfitness() >= best_global_genome.getfitness())
-            best_global_genome = unepop.getbestgenome();
-
-        cout << i << " : " << best_global_genome.toString() << " mute " << MUTERATE << endl;
-        if (best_global_genome.getfitness() == SIZE) break;
-        myfile << i << " " << best_global_genome.getfitness() << " " << MUTERATE << endl;
-    }
-    cout << "Génération actuelle : " << i << endl;
-
-    myfile.close();
+    GeneticAlgorithm();
 }
 
 

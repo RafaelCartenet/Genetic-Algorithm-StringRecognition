@@ -16,7 +16,7 @@ genome::genome(){
     fitness = calculfitness();
 }
 
-genome::genome(string chaine_init){
+genome::genome(const string chaine_init){
     chaine = chaine_init;
     fitness = calculfitness();
 }
@@ -31,11 +31,11 @@ int genome::getfitness() const{
     return fitness;
 }
 
-string genome::getchaine(){
+string genome::getchaine() const{
     return chaine;
 }
 
-void genome::setchaine(string newchaine){
+void genome::setchaine(const string newchaine){
     this->chaine=newchaine;
 }
 
@@ -93,7 +93,7 @@ void genome::mutation() {
 
 
 // toString
-string genome::toString() {
+string genome::toString() const{
     return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")";
 }
 

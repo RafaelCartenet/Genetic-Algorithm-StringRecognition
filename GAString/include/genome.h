@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 class genome
 {
     public:
@@ -14,8 +13,8 @@ class genome
         virtual ~genome();
 
         // Getters / Setters
-        int getfitness()const ;
-        string getchaine();
+        int getfitness() const;
+        string getchaine() const;
         void setchaine(string newchaine);
 
         // Methods
@@ -24,8 +23,7 @@ class genome
         void mutation();
 
         // toString
-        string toString();
-
+        string toString() const;
 
     private:
         string chaine;
