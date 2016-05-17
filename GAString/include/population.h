@@ -22,7 +22,7 @@ class population
 
         // Methods
         genome getbestgenome() const;
-        void update_muterate();
+        void update_muterate(double &d);
         void initialiser_population();
         void update_fitness();
         void population_vierge();
