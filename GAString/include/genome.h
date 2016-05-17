@@ -4,6 +4,11 @@
 
 using namespace std;
 
+/** \brief Classe génome
+ * \details La classe est composée d'une chaîne de caractères ainsi qu'une fitness qui correspond au degré de similarité
+ * entre la chaîne du génome et la chaîne cible que l'on cherche à reproduire.
+
+ */
 class genome
 {
     public:

@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/** \brief Classe population.
+ * \details Celle-ci est simplement composée d'un vector de génomes. Pour plus d'informations sur les génomes,
+ * merci de consulter la documentation relative aux génomes.
+ */
 class population
 {
     public:
@@ -18,7 +22,7 @@ class population
 
         // Methods
         genome getbestgenome() const;
-        void update_muterate() const;
+        void update_muterate();
         void initialiser_population();
         void update_fitness();
         void population_vierge();
