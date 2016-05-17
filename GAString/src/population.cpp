@@ -51,7 +51,7 @@ void population::initialiser_population() {
  * \return void*
  *
  */
-void* population::update_muterate(double& MUTERATE) {
+void population::update_muterate(double& MUTERATE) {
     int delta = pop.at(0).getfitness() - pop.at(NBGENOME/2).getfitness();
     cout << delta << DELTAFITNESS << COEFFMUTERATE << endl;
 
