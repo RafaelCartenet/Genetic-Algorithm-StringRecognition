@@ -9,7 +9,7 @@ using namespace std;
 // Constructor
 genome::genome(){
     string chainetemp;
-    for (int j=0; j<SIZE; j++){
+    for (int j=0; j<(int)SIZE; j++){
         chainetemp += (rand() % 90) + 32;
     }
     chaine = chainetemp;
@@ -58,7 +58,7 @@ void genome::updatefitness(){
  */
 int genome::calculfitness() {
     int sum = 0;
-    for (int i = 0; i < SIZE; i++){
+    for (int i = 0; i < (int)SIZE; i++){
         if (chaine.at(i)!=target.at(i)){
             sum += 1;
         }
@@ -83,7 +83,7 @@ int genome::calculfitness() {
 void genome::mutation() {
     string tempchaine = this->chaine;
 
-    for (int i=0; i<SIZE; i++) {
+    for (int i=0; i<(int)SIZE; i++) {
         if (RANDOM<MUTERATE)
             tempchaine.at(i) = (rand() % 91)+32;
     }

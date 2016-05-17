@@ -31,15 +31,31 @@ void population::setpop(vector<genome> newpop){
  */
 void population::initialiser_population() {
     vector<genome> poptemp;
-    for (int i = 0; i < NBGENOME; i++)
+    for (int i = 0; i <(int)NBGENOME; i++)
         poptemp.push_back(genome());
     this->setpop(poptemp);
 }
 
 
-void population::update_muterate() const{
+/** \brief Fonction de mise à jour du Muterate variable si l'algorithme vient à stagner.
+ * \details Comment repérer que l'algorithme stagne ?
+ * On compare la fitness du premier génome de la population
+ * (qui au moment de l'execution du main est le meilleur) avec le génome médian. Si la différence de fitness est inférieure
+ * au DELTAFITNESS fixé en paramètre, cela signifie que l'algorithme stagne car au moins la moitié des génomes ont la même fitness
+ * que le meilleur génome de la population. Dans ce cas, on multiplie notre muterate actuel par un certain coefficient.
+ * Cela est particulièrement utile lorsqu'il ne manque qu'une ou 2 lettres pour atteindre la chaîne cible. On souahite alors
+ * un muterate elevé pour brasser le plus de solutions possibles, sans que celui-ci soit trop elevé pour éviter de
+ * brasser trop de solutions inutiles, d'où l'introduction d'un seuil MUTERATEMAX.
+
+ * \param MUTERATE double&
+ * \return void*
+ *
+ */
+void* population::update_muterate(double& MUTERATE) {
     int delta = pop.at(0).getfitness() - pop.at(NBGENOME/2).getfitness();
-    if (delta < DELTAFITNESS && MUTERATE < MUTERATEMAX)
+    cout << delta << DELTAFITNESS << COEFFMUTERATE << endl;
+
+    if ((delta < DELTAFITNESS) && (MUTERATE < MUTERATEMAX))
         MUTERATE*=COEFFMUTERATE;
 }
 
@@ -72,7 +88,7 @@ void population::del_genome(int i) {
  */
 genome population::getbestgenome() const{
     int indice=0;
-    for (int i=1; i< NBGENOME ; i++) {
+    for (int i=1; i<(int)NBGENOME ; i++) {
         if (pop.at(indice).getfitness()<pop.at(i).getfitness()){
             indice = i;
         }
@@ -87,7 +103,7 @@ genome population::getbestgenome() const{
  *
  */
 void population::update_fitness(){
-    for (int i = 0; i < NBGENOME; i++)
+    for (int i = 0; i < (int)NBGENOME; i++)
         pop.at(i).updatefitness();
 }
 
@@ -116,7 +132,7 @@ void population::crossover(){
     population newpop = population();
     string chaine1, chaine2;
     genome fils1, fils2;
-    for (int k=0; k<NBGENOME; k=k+2) {
+    for (int k=0; k<(int)NBGENOME; k=k+2) {
         fils1=pop.at(k);
         fils2=pop.at(k+1);
         if (RANDOM<CROSSOVERRATE) {
@@ -153,28 +169,28 @@ void population::selection(){
 
     population newpop = population();
 
-    /* Elitisme */
+    // Elitisme
     for (int i = 0; i < Elitnb; i++){
         newpop.add_genome(this->getpop().at(i));
     }
 
-    /* RWS */
+    // RWS
     int sum_fitness = 0;
     int fitnesscount;
     int bound;
     int k;
 
-    for (int i = 0; i < NBGENOME; i++){
+    for (int i = 0; i <(int)NBGENOME; i++){
         sum_fitness += this->getpop().at(i).getfitness();
     }
 
     sum_fitness = (sum_fitness==0 ? 1 : sum_fitness);
 
-    for (int i = Elitnb; i < NBGENOME; i++) {
+    for (int i = Elitnb; i <(int)NBGENOME; i++) {
         bound = (rand()%sum_fitness)+1;
         fitnesscount = 0;
         k = 0;
-        while ((fitnesscount < bound)&&(k<NBGENOME)) {
+        while ((fitnesscount < bound)&&(k<(int)NBGENOME)) {
             fitnesscount += this->getpop().at(k).getfitness();
             k++;
         }
@@ -192,7 +208,7 @@ void population::selection(){
 void population::mutation(){
     vector<genome> newpop = this->getpop();
 
-    for (int i=0; i<NBGENOME; i++) {
+    for (int i=0; i<(int)NBGENOME; i++) {
         newpop.at(i).mutation();
     }
 
