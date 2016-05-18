@@ -53,8 +53,6 @@ void population::initialiser_population() {
  */
 void population::update_muterate(double& MUTERATE) {
     int delta = pop.at(0).getfitness() - pop.at(NBGENOME/2).getfitness();
-    cout << delta << DELTAFITNESS << COEFFMUTERATE << endl;
-
     if ((delta < DELTAFITNESS) && (MUTERATE < MUTERATEMAX))
         MUTERATE*=COEFFMUTERATE;
 }
@@ -162,7 +160,6 @@ void population::crossover(){
  */
 void population::selection(){
     this->update_fitness();
-
     this->sort_by_fitness();
 
     int Elitnb = ELITRATE*NBGENOME;

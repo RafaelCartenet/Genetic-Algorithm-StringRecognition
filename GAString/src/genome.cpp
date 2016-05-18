@@ -7,6 +7,9 @@
 using namespace std;
 
 // Constructor
+/** \brief Méthode de création d'un génome.
+ * \details On crée une chaîne de SIZE caractères aléatoires.
+ */
 genome::genome(){
     string chainetemp;
     for (int j=0; j<(int)SIZE; j++){
@@ -73,7 +76,7 @@ int genome::calculfitness() {
 }
 
 
-/** \brief Méthode qui va remplacer certains caractères du génome
+/** \brief Méthode de mutation : elle va remplacer certains caractères du génome
  * \details On parcourt la chaîne du génome actuel de caractère en caractère et à chaque pas on génère un nombre entre 0 et 1.
  * Si celui-ci est inférieur au paramètre MUTERATE, on remplace le caractère correspondant par un autre aléatoire de la table ASCII
  * compris entre 32 et 122 (32 afin d'éviter les premiers caractères qui ne correspondent à aucune lettre de l'alphabet, 122 pour la dernière lettre relevante de la table ASCII).
@@ -94,6 +97,5 @@ void genome::mutation() {
 
 // toString
 string genome::toString() const{
-    return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness)+")";
+    return "chaine : "+chaine+" | fitness : ("+std::to_string(fitness);
 }
-
