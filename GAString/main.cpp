@@ -8,6 +8,14 @@
 
 using namespace std;
 
+/** \brief Méthode principale de l'algorithme génétique.
+ * \details Cette méthode est la seule que nous utiliserons dans le main : elle va créer une population vide,
+ * à partir de laquelle on va travailler. On y appliquera les mutations, crossovers et selections et on
+ * affichera à chaque génération le meilleur génome ainsi que le MUTERATE actuel.
+ * La méthode s'arrête quand elle est arrivée au terme des générations ou que la fitness du meilleur génome est égal à la taille de la chaine target.
+ * \return void
+ *
+ */
 void GeneticAlgorithm(){
     ofstream myfile;
     myfile.open ("results.txt");
@@ -15,18 +23,26 @@ void GeneticAlgorithm(){
     population unepop = population();
     unepop.initialiser_population();
     genome best_global_genome = unepop.getbestgenome();
+
     for (i = 0; i < NBGENE; i++){
         unepop.mutation();
         unepop.crossover();
         unepop.selection();
-        unepop.update_muterate();
+
+
+        unepop.update_muterate(MUTERATE);
+
+
+
         if (unepop.getbestgenome().getfitness() >= best_global_genome.getfitness())
             best_global_genome = unepop.getbestgenome();
-        cout << i << " : " << best_global_genome.toString() << " mute " << MUTERATE << endl;
+
+
+        cout << i << " : " << best_global_genome.toString() << "/" << SIZE << ") Muterate actuel : " << MUTERATE << endl;
         myfile << i << " " << best_global_genome.getfitness() << " " << MUTERATE << endl;
-        if (best_global_genome.getfitness() == SIZE) break;
+        if (best_global_genome.getfitness() == (int)SIZE) break;
     }
-    cout << "Génération actuelle : " << i << endl;
+    cout << "Génération finale : " << i << endl;
 
     myfile.close();
 }
@@ -37,12 +53,3 @@ int main()
     srand(std::time(0));
     GeneticAlgorithm();
 }
-
-
-/* From  the  literature  reviewed  it is  observed  that  the  optimal  values for  mutation  probability
-(0.001)  and single point crossover with probability (0.6) with population size (50-100) as suggested by DeJong (1975) have been used in many GA implementations. Mutation proba
-bility above 0.05 is in general harmful for the  optimal performance  of GAs  as concluded  by Grefenstelle
-(1986). Schaffer et al.(1989) suggested optimal  parameter  settings  which  are  nearly  the  same  as  that  of  Grefenstelle
-(1986). Forgarty  (1989) showed that the varying mutation probabilities significantly prove the performance of GA and Hesset &
-Mannar  (1991)  showed  that  the  mutation  probability  should  be  decreased  during  the  convergence  in
-agreement with the results of Forgarty (1989 */
